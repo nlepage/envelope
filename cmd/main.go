@@ -1,11 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/tgirier/envelope"
 )
 
 func main() {
-	log.Fatal(envelope.ListenAndServe("localhost:8080"))
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	log.Fatal(envelope.ListenAndServe(fmt.Sprintf(":%s", port)))
 }
